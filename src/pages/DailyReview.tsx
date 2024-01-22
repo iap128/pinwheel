@@ -23,7 +23,7 @@ const DailyReview: FC<Props> = ({summaryObject}) => {
       <Row gutter={16}>
         <Col xs={24} sm={24} md={8} lg={8} xl={8}>
           <WeatherCard
-            title="Temperature"
+            title="Avg Temperature"
             value={summaryObject?.imperial.tempAvg}
             suffix="f"
             icon={faTemperatureThreeQuarters}
@@ -32,7 +32,7 @@ const DailyReview: FC<Props> = ({summaryObject}) => {
         </Col>
         <Col xs={24} sm={24} md={8} lg={8} xl={8}>
           <WeatherCard
-            title="Wind Speed"
+            title="Avg Wind Speed"
             value={summaryObject?.imperial.windspeedAvg}
             suffix="mph"
             icon={faWind}
@@ -40,7 +40,7 @@ const DailyReview: FC<Props> = ({summaryObject}) => {
         </Col>
         <Col xs={24} sm={24} md={8} lg={8} xl={8}>
           <WeatherCard
-            title="Wind Direction"
+            title="Avg Wind Direction"
             value={summaryObject?.winddirAvg}
             suffix="degrees"
             icon={faCompass}
@@ -50,7 +50,7 @@ const DailyReview: FC<Props> = ({summaryObject}) => {
       <Row gutter={16}>
         <Col xs={24} sm={24} md={8} lg={8} xl={8}>
           <WeatherCard
-            title="Pressure"
+            title="Max Pressure"
             value={summaryObject?.imperial.pressureMax}
             suffix="inHg"
             icon={faGauge}
@@ -58,7 +58,7 @@ const DailyReview: FC<Props> = ({summaryObject}) => {
         </Col>
         <Col xs={24} sm={24} md={8} lg={8} xl={8}>
           <WeatherCard
-            title="Gust Speed"
+            title="Avg Gust Speed"
             value={summaryObject?.imperial.windgustAvg}
             suffix="mph"
             icon={faWind}
@@ -66,7 +66,7 @@ const DailyReview: FC<Props> = ({summaryObject}) => {
         </Col>
         <Col xs={24} sm={24} md={8} lg={8} xl={8}>
           <WeatherCard
-            title="Humidity"
+            title="Avg Humidity"
             value={summaryObject?.humidityAvg}
             suffix="%"
             icon={faPercent}
@@ -76,7 +76,7 @@ const DailyReview: FC<Props> = ({summaryObject}) => {
       <Row gutter={16}>
         <Col xs={24} sm={24} md={8} lg={8} xl={8}>
           <WeatherCard
-            title="Rain"
+            title="Total Rain"
             value={summaryObject?.imperial.precipTotal}
             suffix="in"
             icon={faDroplet}
@@ -85,7 +85,7 @@ const DailyReview: FC<Props> = ({summaryObject}) => {
         </Col>
         <Col xs={24} sm={24} md={8} lg={8} xl={8}>
           <WeatherCard
-            title="Solar Radiation"
+            title="Max Solar Radiation"
             value={summaryObject?.solarRadiationHigh}
             suffix="w"
             icon={faSolarPanel}

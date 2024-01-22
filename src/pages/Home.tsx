@@ -4,6 +4,7 @@ import Current from './Current';
 import DailyReview from './DailyReview';
 import { DailySummary, getWeekHistory } from '../api/getWeekHistory';
 import DateSelector from '../components/DateSelector';
+import HeaderBar from '../components/HeaderBar';
 
 const Home = () => {
   const { selectedDate, stationID, apiKey } = useContext(StationContext);
@@ -21,7 +22,7 @@ const Home = () => {
 
   return (
     <div>
-      <DateSelector />
+      <HeaderBar />
       {selectedDate === 0 ? <Current /> : <DailyReview summaryObject={dayHistory[selectedDate]} />}
     </div>
   );

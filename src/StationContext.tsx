@@ -7,6 +7,7 @@ interface OwnProps {
 
 interface ContextProps {
   stationID: string;
+  setStationID: (id: string) => void;
   apiKey: string;
   selectedDate: number;
   setSelectedDate: (date: number) => void;
@@ -17,7 +18,7 @@ interface ContextProps {
 export const StationContext = createContext({} as ContextProps);
 
 const StationProvider: FC<OwnProps> = ({ children }) => {
-  const stationID = 'KORBEAVE588';
+  const [stationID, setStationID] = useState('KORBEAVE588');
   const apiKey = '7c8632e7f0c34cfa8632e7f0c36cfa4a';
 
   const [selectedDate, setSelectedDate] = useState(0);
@@ -36,6 +37,7 @@ const StationProvider: FC<OwnProps> = ({ children }) => {
     <StationContext.Provider
       value={{
         stationID,
+        setStationID,
         apiKey,
         selectedDate,
         setSelectedDate,
