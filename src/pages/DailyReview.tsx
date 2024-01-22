@@ -17,7 +17,6 @@ interface Props {
 }
 
 const DailyReview: FC<Props> = ({summaryObject}) => {
-    console.log(summaryObject);
 
   return (
     <div>

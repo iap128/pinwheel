@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import { StationContext } from '../StationContext';
-import DatePicker from '../components/DatePicker';
 import Current from './Current';
 import DailyReview from './DailyReview';
 import { DailySummary, getWeekHistory } from '../api/getWeekHistory';
+import DateSelector from '../components/DateSelector';
 
 const Home = () => {
   const { selectedDate, stationID, apiKey } = useContext(StationContext);
@@ -19,11 +19,9 @@ const Home = () => {
     loadData();
   }, [stationID, apiKey]);
 
-  console.log(selectedDate);
-
   return (
     <div>
-      <DatePicker />
+      <DateSelector />
       {selectedDate === 0 ? <Current /> : <DailyReview summaryObject={dayHistory[selectedDate]} />}
     </div>
   );

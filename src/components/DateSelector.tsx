@@ -3,7 +3,7 @@ import { Button, Typography } from 'antd';
 import { useContext } from 'react';
 import { StationContext } from '../StationContext';
 
-const DatePicker = () => {
+const DateSelector = () => {
   const { selectedDate, setSelectedDate } = useContext(StationContext);
 
   const getDayName = (): string => {
@@ -12,10 +12,16 @@ const DatePicker = () => {
     const now = new Date();
 
     if (selectedDate === 0) {
-      return days[now.getDay()];
+      return 'Today';
     }
+    else {
+      const dayNumber = now.getDay() - selectedDate;
 
-    return '';
+      if (dayNumber < 0) {
+        return days[dayNumber + 7];
+      }
+      return days[now.getDay() - selectedDate];
+    }
   };
 
   return (
@@ -31,16 +37,16 @@ const DatePicker = () => {
       <Button
         icon={<LeftOutlined />}
         disabled={selectedDate === 6}
-        onClick={() => setSelectedDate(selectedDate - 1)}
+        onClick={() => setSelectedDate(selectedDate + 1)}
       />
       <Typography.Text>{getDayName()}</Typography.Text>
       <Button
         icon={<RightOutlined />}
         disabled={selectedDate === 0}
-        onClick={() => setSelectedDate(selectedDate + 1)}
+        onClick={() => setSelectedDate(selectedDate - 1)}
       />
     </div>
   );
 };
 
-export default DatePicker;
+export default DateSelector;
