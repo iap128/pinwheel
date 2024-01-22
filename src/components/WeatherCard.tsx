@@ -3,6 +3,7 @@ import { CardProps } from '../constants/interfaces';
 import { Button, Card, Statistic, Tooltip } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { InfoCircleOutlined } from '@ant-design/icons';
+import { ClipLoader } from 'react-spinners';
 
 const WeatherCard: FC<CardProps> = ({ title, value, suffix, icon, tooltip, hasGraph }) => {
   return (
@@ -28,16 +29,20 @@ const WeatherCard: FC<CardProps> = ({ title, value, suffix, icon, tooltip, hasGr
           alignItems: 'center',
         }}
       >
-        <Statistic
-          title={title}
-          value={value}
-          prefix={<FontAwesomeIcon icon={icon} />}
-          suffix={suffix}
-          precision={2}
-        />
+        {value === undefined ? (
+          <ClipLoader />
+        ) : (
+          <Statistic
+            title={title}
+            value={value}
+            prefix={<FontAwesomeIcon icon={icon} />}
+            suffix={suffix}
+            precision={2}
+          />
+        )}
         {tooltip && (
           <Tooltip title={tooltip}>
-            <Button icon={<InfoCircleOutlined />} type='text' />
+            <Button icon={<InfoCircleOutlined />} type="text" />
           </Tooltip>
         )}
       </div>

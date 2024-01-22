@@ -3,7 +3,6 @@ import { StationContext } from '../StationContext';
 import Current from './Current';
 import DailyReview from './DailyReview';
 import { DailySummary, getWeekHistory } from '../api/getWeekHistory';
-import DateSelector from '../components/DateSelector';
 import HeaderBar from '../components/HeaderBar';
 
 const Home = () => {
@@ -17,8 +16,10 @@ const Home = () => {
       setDayHistory(data);
     };
 
-    loadData();
-  }, [stationID, apiKey]);
+    if (selectedDate !== 0) {
+      loadData();
+    }
+  }, [stationID, apiKey, selectedDate]);
 
   return (
     <div>
