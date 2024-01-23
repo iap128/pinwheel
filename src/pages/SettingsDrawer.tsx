@@ -18,7 +18,7 @@ const SettingsDrawer: FC<Props> = ({isOpen, setIsOpen}) => {
     };
 
     return (
-        <Drawer title='Settings' placement="left" open={isOpen} onClose={() => setIsOpen(false)}>
+        <Drawer title='Settings' open={isOpen} onClose={() => setIsOpen(false)}>
             <Input placeholder="Station ID" value={newID} onChange={(e) => setNewID(e.target.value)} />
             <Button type='primary' onClick={saveAction}>Save</Button>
         </Drawer>

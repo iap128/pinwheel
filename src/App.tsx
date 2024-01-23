@@ -1,9 +1,12 @@
 import './App.css';
-import { Button, Layout, theme } from 'antd';
+import { Button, Layout, Typography, theme } from 'antd';
 import Home from './pages/Home';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { SettingFilled } from '@ant-design/icons';
 import SettingsDrawer from './pages/SettingsDrawer';
+import { StationContext } from './StationContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCloudBolt } from '@fortawesome/free-solid-svg-icons';
 
 const { Header, Content, Footer } = Layout;
 
@@ -12,16 +15,21 @@ function App() {
     token: { colorBgContainer },
   } = theme.useToken();
 
+  const { selectedDate } = useContext(StationContext);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Layout>
-      <Header style={{ display: 'flex', alignItems: 'center' }}>
+      <Header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <FontAwesomeIcon icon={faCloudBolt} color='white' size='2x'/>
+        <Typography.Title>
+          {selectedDate === 0 ? 'Current Conditions' : 'Historical View'}
+        </Typography.Title>
         <Button icon={<SettingFilled />} onClick={() => setIsOpen(true)} />
         <SettingsDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
       </Header>
       <Content style={{ padding: '10px 50px' }}>
-        <div style={{ background: colorBgContainer, boxShadow: '5px 5px 3px #222', borderRadius: '5px' }}>
+        <div style={{ background: colorBgContainer }}>
           <Home />
         </div>
       </Content>
