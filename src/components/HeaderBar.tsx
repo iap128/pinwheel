@@ -1,14 +1,10 @@
-import { Button } from "antd";
+import { Button, Typography } from "antd";
 import DateSelector from "./DateSelector";
-import { SettingFilled } from "@ant-design/icons";
-import { useContext, useState } from "react";
-import SettingsDrawer from "../pages/SettingsDrawer";
+import { useContext } from "react";
 import { StationContext } from "../StationContext";
 
 const HeaderBar = () => {
     const {setSelectedDate} = useContext(StationContext);
-
-    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div style={{
@@ -17,9 +13,8 @@ const HeaderBar = () => {
             justifyContent: 'space-between',
             padding: '0px 20px',
         }}>
-            <Button icon={<SettingFilled />} onClick={() => setIsOpen(true)} />
+            <Typography.Text>Last update: 12 seconds ago</Typography.Text>
             <DateSelector />
-            <SettingsDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
             <Button type="primary" onClick={() => setSelectedDate(0)}>Today</Button>
         </div>
     )

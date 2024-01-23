@@ -24,14 +24,14 @@ const StationProvider: FC<OwnProps> = ({ children }) => {
   const [selectedDate, setSelectedDate] = useState(0);
   const [currentConditions, setCurrentConditions] = useState<CurrentResponse | null>(null);
 
-  const loadData = async () => {
-    const data = await getCurrentConditions(stationID, apiKey);
-    setCurrentConditions(data);
-  };
-
   useEffect(() => {
+    const loadData = async () => {
+      const data = await getCurrentConditions(stationID, apiKey);
+      setCurrentConditions(data);
+    };
+
     loadData();
-  }, []);
+  }, [stationID]);
 
   return (
     <StationContext.Provider
