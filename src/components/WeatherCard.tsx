@@ -25,7 +25,7 @@ const WeatherCard: FC<CardProps> = ({ title, value, suffix, icon, tooltip, hasEx
         }}
       >
         {value === undefined ? (
-          <ClipLoader />
+          <ClipLoader color='white'/>
         ) : (
           <Statistic
             title={title}

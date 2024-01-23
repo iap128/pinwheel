@@ -16,7 +16,7 @@ function App() {
 
   return (
     <Layout>
-      <Header>
+      <Header style={{ display: 'flex', alignItems: 'center' }}>
         <Button icon={<SettingFilled />} onClick={() => setIsOpen(true)} />
         <SettingsDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
       </Header>
