@@ -20,8 +20,8 @@ function App() {
         <Button icon={<SettingFilled />} onClick={() => setIsOpen(true)} />
         <SettingsDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
       </Header>
-      <Content style={{ padding: '0 50px' }}>
-        <div style={{ background: colorBgContainer }}>
+      <Content style={{ padding: '10px 50px' }}>
+        <div style={{ background: colorBgContainer, boxShadow: '5px 5px 3px #222', borderRadius: '5px' }}>
           <Home />
         </div>
       </Content>

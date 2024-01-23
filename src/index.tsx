@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import StationProvider from './StationContext';
+import { ConfigProvider, theme } from 'antd';
+import '@fontsource-variable/roboto-mono';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,7 +13,19 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <StationProvider>
-      <App />
+      <ConfigProvider theme={{
+        algorithm: theme.darkAlgorithm,
+        token: {
+          fontFamily: 'Roboto Mono Variable, sans-serif',
+        },
+        components: {
+          Layout: {
+            headerBg: '#28282A',
+          }
+        }
+      }}>
+        <App />
+      </ConfigProvider>
     </StationProvider>
   </React.StrictMode>
 );
