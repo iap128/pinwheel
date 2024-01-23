@@ -6,12 +6,11 @@ export interface CardProps {
   suffix: string;
   icon: IconDefinition;
   tooltip?: string;
-  hasGraph?: GraphProps;
+  hasExtras?: ExtrasProps[];
 }
 
-export interface GraphProps {
-  dataKey: string;
-  type1Hr: string;
-  type12Hr: string;
-  type24Hr: string;
+export interface ExtrasProps {
+  label: string;
+  value: string | number | undefined;
+  icon: IconDefinition;
 }

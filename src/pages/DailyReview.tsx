@@ -1,11 +1,13 @@
 import { Row, Col } from 'antd';
 import {
   faCompass,
+  faDownLong,
   faDroplet,
   faGauge,
   faPercent,
   faSolarPanel,
   faTemperatureThreeQuarters,
+  faUpLong,
   faWind,
 } from '@fortawesome/free-solid-svg-icons';
 import WeatherCard from '../components/WeatherCard';
@@ -27,7 +29,18 @@ const DailyReview: FC<Props> = ({summaryObject}) => {
             value={summaryObject?.imperial.tempAvg}
             suffix="f"
             icon={faTemperatureThreeQuarters}
-            tooltip={'Feels like ' + summaryObject?.imperial.windchillAvg + ' f'}
+            hasExtras={[
+              {
+                label: 'Max Temperature',
+                value: summaryObject?.imperial.tempHigh,
+                icon: faUpLong
+              },
+              {
+                label: 'Min Temperature',
+                value: summaryObject?.imperial.tempLow,
+                icon: faDownLong
+              },
+            ]}
           />
         </Col>
         <Col xs={24} sm={24} md={8} lg={8} xl={8}>
@@ -36,6 +49,18 @@ const DailyReview: FC<Props> = ({summaryObject}) => {
             value={summaryObject?.imperial.windspeedAvg}
             suffix="mph"
             icon={faWind}
+            hasExtras={[
+              {
+                label: 'Max Wind Speed',
+                value: summaryObject?.imperial.windspeedHigh,
+                icon: faUpLong
+              },
+              {
+                label: 'Min Wind Speed',
+                value: summaryObject?.imperial.windspeedLow,
+                icon: faDownLong
+              },
+            ]}
           />
         </Col>
         <Col xs={24} sm={24} md={8} lg={8} xl={8}>
@@ -62,6 +87,18 @@ const DailyReview: FC<Props> = ({summaryObject}) => {
             value={summaryObject?.imperial.windgustAvg}
             suffix="mph"
             icon={faWind}
+            hasExtras={[
+              {
+                label: 'Max Gust Speed',
+                value: summaryObject?.imperial.windgustHigh,
+                icon: faUpLong
+              },
+              {
+                label: 'Min Gust Speed',
+                value: summaryObject?.imperial.windgustLow,
+                icon: faDownLong
+              },
+            ]}
           />
         </Col>
         <Col xs={24} sm={24} md={8} lg={8} xl={8}>
@@ -80,7 +117,6 @@ const DailyReview: FC<Props> = ({summaryObject}) => {
             value={summaryObject?.imperial.precipTotal}
             suffix="in"
             icon={faDroplet}
-            tooltip={'Falling at a rate of ' + summaryObject?.imperial.precipRate + ' in/hr'}
           />
         </Col>
         <Col xs={24} sm={24} md={8} lg={8} xl={8}>
