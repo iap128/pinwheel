@@ -20,6 +20,7 @@ export interface CurrentResponse {
     obsTimeLocal: string;
     solarRadiation: number;
     winddir: number;
+    uv: number;
 }
 
 export const getCurrentConditions = async (station: string, key: string): Promise<any> => {

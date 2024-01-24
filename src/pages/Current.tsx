@@ -54,6 +54,7 @@ const Current = () => {
             value: currentConditions?.humidity,
             suffix: "%",
             icon: faPercent,
+            tooltip: 'Dew point: ' + currentConditions?.imperial.dewpt + ' f',
           },
           {
             title: "Rain",
@@ -67,6 +68,7 @@ const Current = () => {
             value: currentConditions?.solarRadiation,
             suffix: "w",
             icon: faSolarPanel,
+            tooltip: 'UV Index: ' + currentConditions?.uv
           }
         ]}
       />
