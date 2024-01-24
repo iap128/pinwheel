@@ -25,7 +25,7 @@ const CardExtras: FC<Props> = ({ extras, suffix }) => {
           }}
         >
           {extras.map(extra => (
-            <Card>
+            <Card key={extra.label}>
               <Statistic
                 title={extra.label}
                 value={extra.value}
