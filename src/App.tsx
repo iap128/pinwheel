@@ -20,15 +20,23 @@ function App() {
 
   return (
     <Layout>
-      <Header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <FontAwesomeIcon icon={faCloudBolt} color='white' size='2x'/>
+      <Header
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          alignContent: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+        }}
+      >
+        <FontAwesomeIcon icon={faCloudBolt} color='white' size='2x' />
         <Typography.Title>
           {selectedDate === 0 ? 'Current Conditions' : 'Historical View'}
         </Typography.Title>
         <Button icon={<SettingFilled />} onClick={() => setIsOpen(true)} />
         <SettingsDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
       </Header>
-      <Content style={{ padding: '10px 50px' }}>
+      <Content style={{ padding: '10px 30px' }}>
         <div style={{ background: colorBgContainer }}>
           <Home />
         </div>

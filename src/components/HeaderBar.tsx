@@ -1,4 +1,4 @@
-import { Button, Typography } from 'antd';
+import { Button, Col, Row, Typography } from 'antd';
 import DateSelector from './DateSelector';
 import { useContext } from 'react';
 import { StationContext } from '../StationContext';
@@ -12,24 +12,25 @@ const HeaderBar = () => {
   const diff = Math.round((now.getTime() - then.getTime()) / 60000);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '0px 20px',
-      }}
-    >
-      {currentConditions?.obsTimeLocal && (
-        <Typography.Text>
-          Last update: {diff} {diff === 1 ? 'second' : 'seconds'} ago
-        </Typography.Text>
-      )}
-      <DateSelector />
-      <Button type="primary" onClick={() => setSelectedDate(0)}>
-        Today
-      </Button>
-    </div>
+    <Row gutter={16} align='middle'>
+      <Col xl={8} lg={8} md={24} sm={24} xs={24}>
+        {currentConditions?.obsTimeLocal && (
+          <Typography.Text>
+            Last update: {diff} {diff === 1 ? 'second' : 'seconds'} ago
+          </Typography.Text>
+        )}
+      </Col>
+
+      <Col xl={8} lg={8} md={24} sm={24} xs={24}>
+        <DateSelector />
+      </Col>
+
+      <Col xl={8} lg={8} md={24} sm={24} xs={24}>
+        <Button block type='primary' onClick={() => setSelectedDate(0)}>
+          Today
+        </Button>
+      </Col>
+    </Row>
   );
 };
 
