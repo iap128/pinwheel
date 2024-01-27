@@ -12,7 +12,7 @@ const HeaderBar = () => {
   const diff = Math.round((now.getTime() - then.getTime()) / 60000);
 
   return (
-    <Row gutter={16} align='middle'>
+    <Row gutter={16} align='middle' style={{ margin: '0px 10px' }}>
       <Col xl={8} lg={8} md={24} sm={24} xs={24}>
         {currentConditions?.obsTimeLocal && (
           <Typography.Text>

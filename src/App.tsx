@@ -26,11 +26,12 @@ function App() {
           alignItems: 'center',
           alignContent: 'center',
           justifyContent: 'space-between',
-          flexWrap: 'wrap',
+          height: 'auto',
+          padding: '0px 5%',
         }}
       >
         <FontAwesomeIcon icon={faCloudBolt} color='white' size='2x' />
-        <Typography.Title>
+        <Typography.Title style={{ textAlign: 'center' }}>
           {selectedDate === 0 ? 'Current Conditions' : 'Historical View'}
         </Typography.Title>
         <Button icon={<SettingFilled />} onClick={() => setIsOpen(true)} />
