@@ -1,4 +1,4 @@
-import { FC, createContext, useEffect, useState } from 'react';
+import { FC, createContext, useCallback, useEffect, useState } from 'react';
 import { CurrentResponse, getCurrentConditions } from './api/getCurrentConditions';
 
 interface OwnProps {
@@ -13,6 +13,7 @@ interface ContextProps {
   setSelectedDate: (date: number) => void;
   currentConditions: CurrentResponse | null;
   setCurrentConditions: (data: CurrentResponse | null) => void;
+  loadData: () => void;
 }
 
 export const StationContext = createContext({} as ContextProps);
@@ -24,14 +25,15 @@ const StationProvider: FC<OwnProps> = ({ children }) => {
   const [selectedDate, setSelectedDate] = useState(0);
   const [currentConditions, setCurrentConditions] = useState<CurrentResponse | null>(null);
 
-  useEffect(() => {
-    const loadData = async () => {
-      const data = await getCurrentConditions(stationID, apiKey);
-      setCurrentConditions(data);
-    };
-
-    loadData();
+  const loadData = useCallback(async () => {
+    const data = await getCurrentConditions(stationID, apiKey);
+    setCurrentConditions(data);
   }, [stationID]);
+
+
+  useEffect(() => {
+    loadData();
+  }, [loadData, stationID]);
 
   return (
     <StationContext.Provider
@@ -43,6 +45,7 @@ const StationProvider: FC<OwnProps> = ({ children }) => {
         setSelectedDate,
         currentConditions,
         setCurrentConditions,
+        loadData
       }}
     >
       {children}
