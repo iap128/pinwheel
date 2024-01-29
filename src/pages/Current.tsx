@@ -32,10 +32,23 @@ const Current = () => {
             icon: faWind,
           },
           {
+            title: "Gust Speed",
+            value: currentConditions?.imperial.windGust,
+            suffix: "mph",
+            icon: faWind,
+          },
+          {
             title: 'Wind Direction',
             value: currentConditions?.winddir,
             suffix: 'degrees',
             icon: faCompass,
+          },
+          {
+            title: "Rain",
+            value: currentConditions?.imperial.precipTotal,
+            suffix: "in",
+            icon: faDroplet,
+            tooltip: 'Falling at a rate of ' + currentConditions?.imperial.precipRate + ' in/hr',
           },
           {
             title: "Pressure",
@@ -44,24 +57,11 @@ const Current = () => {
             icon: faGauge,
           },
           {
-            title: "Gust Speed",
-            value: currentConditions?.imperial.windGust,
-            suffix: "mph",
-            icon: faWind,
-          },
-          {
             title: "Humidity",
             value: currentConditions?.humidity,
             suffix: "%",
             icon: faPercent,
             tooltip: 'Dew point: ' + currentConditions?.imperial.dewpt + ' f',
-          },
-          {
-            title: "Rain",
-            value: currentConditions?.imperial.precipTotal,
-            suffix: "in",
-            icon: faDroplet,
-            tooltip: 'Falling at a rate of ' + currentConditions?.imperial.precipRate + ' in/hr',
           },
           {
             title: "Solar Radiation",

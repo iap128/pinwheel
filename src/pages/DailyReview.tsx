@@ -59,18 +59,6 @@ const DailyReview: FC<Props> = ({ summaryObject }) => {
             ],
           },
           {
-            title: 'Avg Wind Direction',
-            value: summaryObject?.winddirAvg,
-            suffix: 'degrees',
-            icon: faCompass,
-          },
-          {
-            title: 'Max Pressure',
-            value: summaryObject?.imperial.pressureMax,
-            suffix: 'inHg',
-            icon: faGauge,
-          },
-          {
             title: 'Avg Gust Speed',
             value: summaryObject?.imperial.windgustAvg,
             suffix: 'mph',
@@ -89,16 +77,28 @@ const DailyReview: FC<Props> = ({ summaryObject }) => {
             ],
           },
           {
-            title: 'Avg Humidity',
-            value: summaryObject?.humidityAvg,
-            suffix: '%',
-            icon: faPercent,
+            title: 'Avg Wind Direction',
+            value: summaryObject?.winddirAvg,
+            suffix: 'degrees',
+            icon: faCompass,
           },
           {
             title: 'Total Rain',
             value: summaryObject?.imperial.precipTotal,
             suffix: 'in',
             icon: faDroplet,
+          },
+          {
+            title: 'Max Pressure',
+            value: summaryObject?.imperial.pressureMax,
+            suffix: 'inHg',
+            icon: faGauge,
+          },
+          {
+            title: 'Avg Humidity',
+            value: summaryObject?.humidityAvg,
+            suffix: '%',
+            icon: faPercent,
           },
           {
             title: 'Max Solar Radiation',

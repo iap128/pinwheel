@@ -1,12 +1,10 @@
 import './App.css';
-import { Button, Layout, Typography, theme } from 'antd';
+import { Avatar, Button, Layout, Typography, theme } from 'antd';
 import Home from './pages/Home';
 import { useContext, useState } from 'react';
 import { SettingFilled } from '@ant-design/icons';
 import SettingsDrawer from './pages/SettingsDrawer';
 import { StationContext } from './StationContext';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCloudBolt } from '@fortawesome/free-solid-svg-icons';
 
 const { Header, Content, Footer } = Layout;
 
@@ -30,7 +28,7 @@ function App() {
           padding: '0px 5%',
         }}
       >
-        <FontAwesomeIcon icon={faCloudBolt} color='white' size='2x' />
+        <Avatar size='large' shape='square' src='./pinwheel.png'/>
         <Typography.Title style={{ textAlign: 'center' }}>
           {selectedDate === 0 ? 'Current Conditions' : 'Historical View'}
         </Typography.Title>
