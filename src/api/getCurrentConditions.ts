@@ -5,6 +5,7 @@ import { formUrlParams } from "./helpers";
 const currentConditionsAPI = 'https://api.weather.com/v2/pws/observations/current';
 
 export interface CurrentResponse {
+    neighborhood: string;
     humidity: number;
     imperial: {
         dewpt: number;
