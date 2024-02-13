@@ -1,5 +1,5 @@
 import { Button, Checkbox, Drawer, Input, Space, Typography } from "antd";
-import { FC, useContext, useEffect, useState } from "react";
+import { FC, useContext, useState } from "react";
 import { StationContext } from "../StationContext";
 import { setCookie } from "typescript-cookie";
 
@@ -12,11 +12,8 @@ const SettingsDrawer: FC<Props> = ({isOpen, setIsOpen}) => {
     const {stationID, setStationID, currentConditions} = useContext(StationContext);
     const [saveID, setSaveID] = useState(true);
 
-    const [newID, setNewID] = useState('');
-
-    useEffect(() => {
-        setNewID(stationID);
-    }, [stationID]);
+    //todo: the new station id isn't updating when the context updates
+    const [newID, setNewID] = useState(stationID);
 
     const saveAction = () => {
         setStationID(newID);

@@ -4,10 +4,9 @@ import Current from './Current';
 import DailyReview from './DailyReview';
 import { DailySummary, getWeekHistory } from '../api/getWeekHistory';
 import HeaderBar from '../components/HeaderBar';
-import SetupPage from '../components/SetupPage';
 
 const Home = () => {
-  const { selectedDate, stationID, apiKey, needsSetup, setNeedsSetup } = useContext(StationContext);
+  const { selectedDate, stationID, apiKey } = useContext(StationContext);
 
   const [dayHistory, setDayHistory] = useState<DailySummary[]>([]);
 
@@ -26,7 +25,6 @@ const Home = () => {
     <div>
       <HeaderBar />
       {selectedDate === 0 ? <Current /> : <DailyReview summaryObject={dayHistory[selectedDate]} />}
-      <SetupPage isOpen={needsSetup} setIsOpen={setNeedsSetup} />
     </div>
   );
 };

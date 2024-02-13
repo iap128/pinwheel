@@ -15,20 +15,16 @@ interface ContextProps {
   currentConditions: CurrentResponse | null;
   setCurrentConditions: (data: CurrentResponse | null) => void;
   loadData: () => void;
-  needsSetup: boolean;
-  setNeedsSetup: (needsSetup: boolean) => void;
 }
 
 export const StationContext = createContext({} as ContextProps);
 
 const StationProvider: FC<OwnProps> = ({ children }) => {
-  //KORBEAVE588
-  const [stationID, setStationID] = useState('');
+  const [stationID, setStationID] = useState('KORBEAVE588');
   const apiKey = '7c8632e7f0c34cfa8632e7f0c36cfa4a';
 
   const [selectedDate, setSelectedDate] = useState(0);
   const [currentConditions, setCurrentConditions] = useState<CurrentResponse | null>(null);
-  const [needsSetup, setNeedsSetup] = useState(false);
 
   const loadData = useCallback(async () => {
     const data = await getCurrentConditions(stationID, apiKey);
@@ -43,13 +39,7 @@ const StationProvider: FC<OwnProps> = ({ children }) => {
       setStationID(id);
     }
 
-    if (!id) {
-      setNeedsSetup(true);
-    }
-
-    if (stationID) {
-      loadData();
-    }
+    loadData();
   }, [loadData, stationID]);
 
   return (
@@ -62,9 +52,7 @@ const StationProvider: FC<OwnProps> = ({ children }) => {
         setSelectedDate,
         currentConditions,
         setCurrentConditions,
-        loadData,
-        needsSetup,
-        setNeedsSetup
+        loadData
       }}
     >
       {children}
