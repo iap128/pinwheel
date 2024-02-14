@@ -1,7 +1,7 @@
 import { Button, Checkbox, Drawer, Input, Space, Typography } from "antd";
 import { FC, useContext, useEffect, useState } from "react";
 import { StationContext } from "../StationContext";
-import { setCookie } from "typescript-cookie";
+//import { setCookie } from "typescript-cookie";
 
 interface Props {
     isOpen: boolean;
@@ -22,7 +22,8 @@ const SettingsDrawer: FC<Props> = ({isOpen, setIsOpen}) => {
         setStationID(newID);
 
         if (saveID) {
-            setCookie('stationID', newID);
+            //setCookie('stationID', newID);
+            window.localStorage.setItem('stationID', newID);
         }
 
         setIsOpen(false);

@@ -1,6 +1,6 @@
 import { Button, Input, Modal, Space, Typography } from "antd";
 import { FC, useContext, useState } from "react";
-import { setCookie } from "typescript-cookie";
+//import { setCookie } from "typescript-cookie";
 import { StationContext } from "../StationContext";
 
 interface Props {
@@ -13,7 +13,8 @@ const SetupPage: FC<Props> = ({ isOpen, setIsOpen }) => {
     const [id, setID] = useState('');
 
     const save = () => {
-        setCookie('stationID', id);
+        //setCookie('stationID', id);
+        window.localStorage.setItem('stationID', id);
         setStationID(id);
         setIsOpen(false);
     };
