@@ -28,7 +28,7 @@ function App() {
           padding: '0px 5%',
         }}
       >
-        <Avatar size='large' shape='square' src='./pinwheel.png'/>
+        <Avatar size='large' shape='square' src='./pinwheel.png' />
         <Typography.Title style={{ textAlign: 'center' }}>
           {selectedDate === 0 ? 'Current Conditions' : 'Historical View'}
         </Typography.Title>

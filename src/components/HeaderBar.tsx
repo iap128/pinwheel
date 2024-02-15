@@ -11,7 +11,7 @@ const HeaderBar = () => {
   const updateTime = useCallback(() => {
     const now = new Date();
     const then = new Date(currentConditions?.obsTimeLocal || 0);
-  
+
     const diff = Math.round((now.getTime() - then.getTime()) / 1000);
     setLastUpdate(diff);
   }, [currentConditions?.obsTimeLocal]);
@@ -19,7 +19,7 @@ const HeaderBar = () => {
   useEffect(() => {
     updateTime();
   }, [updateTime]);
-  
+
   useEffect(() => {
     const interval = setInterval(() => updateTime(), 10000);
 
@@ -31,10 +31,10 @@ const HeaderBar = () => {
       <Col xl={8} lg={8} md={24} sm={24} xs={24}>
         {currentConditions?.obsTimeLocal && (
           <Space direction='horizontal'>
-          <Typography.Text>
-            Last update: {lastUpdate} {lastUpdate === 1 ? 'second' : 'seconds'} ago
-          </Typography.Text>
-          <Button icon={<ReloadOutlined />} onClick={loadData} />
+            <Typography.Text>
+              Last update: {lastUpdate} {lastUpdate === 1 ? 'second' : 'seconds'} ago
+            </Typography.Text>
+            <Button icon={<ReloadOutlined />} onClick={loadData} />
           </Space>
         )}
       </Col>
