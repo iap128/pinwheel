@@ -1,5 +1,6 @@
 import { FC, createContext, useCallback, useEffect, useState } from 'react';
 import { CurrentResponse, getCurrentConditions } from './api/getCurrentConditions';
+import { getCookie } from 'typescript-cookie';
 
 interface OwnProps {
   children: React.ReactNode;
@@ -32,6 +33,12 @@ const StationProvider: FC<OwnProps> = ({ children }) => {
 
 
   useEffect(() => {
+    const id = getCookie('stationID');
+
+    if (id && id !== stationID) {
+      setStationID(id);
+    }
+
     loadData();
   }, [loadData, stationID]);
 
