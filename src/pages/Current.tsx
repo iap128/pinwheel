@@ -7,12 +7,19 @@ import {
   faTemperatureThreeQuarters,
   faWind,
 } from '@fortawesome/free-solid-svg-icons';
-import { useContext } from 'react';
+import { FC, useContext } from 'react';
 import { StationContext } from '../StationContext';
 import ResponsiveRow from '../components/ResponsiveRow';
+import { DailySummary } from '../api/getWeekHistory';
 
-const Current = () => {
+interface Props {
+  recentHistory: DailySummary[];
+}
+
+const Current: FC<Props> = ({ recentHistory }) => {
   const { currentConditions } = useContext(StationContext);
+
+  const temperatureTrend = recentHistory?.map(item => item?.imperial?.tempAvg);
 
   return (
     <div>
