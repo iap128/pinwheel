@@ -6,7 +6,6 @@ import { DailySummary, getWeekHistory } from '../api/getWeekHistory';
 import HeaderBar from '../components/HeaderBar';
 import SetupPage from '../components/SetupPage';
 import { getRecentHistory } from '../api/getRecentHistory';
-import TemperatureGraph from '../components/TemperatureGraph';
 
 const Home = () => {
   const { selectedDate, stationID, apiKey, needsSetup, setNeedsSetup } = useContext(StationContext);
@@ -40,7 +39,6 @@ const Home = () => {
       <HeaderBar />
       {selectedDate === 0 ? <Current recentHistory={recentHistory}/> : <DailyReview summaryObject={dayHistory[selectedDate]} />}
       <SetupPage isOpen={needsSetup} setIsOpen={setNeedsSetup} />
-      <TemperatureGraph temperatures={recentHistory?.map(item => item?.imperial?.tempAvg)}/>
     </div>
   );
 };

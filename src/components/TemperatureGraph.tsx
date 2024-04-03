@@ -1,28 +1,18 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
 
 interface Props {
-  temperatures: number[];
+  temperatures: any[];
 }
 
 const TemperatureGraph: FC<Props> = ({ temperatures }) => {
-    const [data, setData] = useState<{time: string, temp: number}[]>([]);
 
-    useEffect(() => {
-        const tempData = [];
-        for (const item in temperatures) {
-            tempData.push({time: item, temp: temperatures[item]});
-        }
-
-        setData(tempData);
-    }, [temperatures]);
-    
   return (
     <div>
       <AreaChart
         width={500}
         height={400}
-        data={data}
+        data={temperatures}
         margin={{
           top: 10,
           right: 30,

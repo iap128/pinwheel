@@ -19,7 +19,7 @@ interface Props {
 const Current: FC<Props> = ({ recentHistory }) => {
   const { currentConditions } = useContext(StationContext);
 
-  const temperatureTrend = recentHistory?.map(item => item?.imperial?.tempAvg);
+  const temperatureTrend = recentHistory?.map(item => ({time: item.obsTimeLocal, temp: item?.imperial?.tempAvg}));
 
   return (
     <div>
