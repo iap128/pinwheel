@@ -21,6 +21,8 @@ const Current: FC<Props> = ({ recentHistory }) => {
   const { currentConditions } = useContext(StationContext);
 
   const temperatureTrend = recentHistory?.map(item => ({time: item.obsTimeLocal, value: item?.imperial?.tempAvg}));
+  const rainTrend = recentHistory?.map(item => ({time: item.obsTimeLocal, value: item?.imperial?.precipTotal}));
+  const humidityTrend = recentHistory?.map(item => ({time: item.obsTimeLocal, value: item?.humidityAvg}));
 
   return (
     <div>
@@ -32,7 +34,7 @@ const Current: FC<Props> = ({ recentHistory }) => {
             suffix: 'f',
             icon: faTemperatureThreeQuarters,
             tooltip: 'Feels like ' + currentConditions?.imperial.windChill + ' f',
-            extras: <TemperatureGraph temperatures={temperatureTrend} />,
+            extras: <TemperatureGraph value={temperatureTrend} />,
           },
           {
             title: 'Wind Speed',
@@ -58,6 +60,7 @@ const Current: FC<Props> = ({ recentHistory }) => {
             suffix: "in",
             icon: faDroplet,
             tooltip: 'Falling at a rate of ' + currentConditions?.imperial.precipRate + ' in/hr',
+            extras: <TemperatureGraph value={rainTrend} />,
           },
           {
             title: "Pressure",
@@ -71,6 +74,7 @@ const Current: FC<Props> = ({ recentHistory }) => {
             suffix: "%",
             icon: faPercent,
             tooltip: 'Dew point: ' + currentConditions?.imperial.dewpt + ' f',
+            extras: <TemperatureGraph value={humidityTrend} />,
           },
           {
             title: "Solar Radiation",

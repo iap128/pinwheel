@@ -4,10 +4,10 @@ import { FC, useState } from 'react';
 import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
 
 interface Props {
-  temperatures: any[];
+  value: {time: string, value: number}[];
 }
 
-const TemperatureGraph: FC<Props> = ({ temperatures }) => {
+const TemperatureGraph: FC<Props> = ({ value }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -17,7 +17,7 @@ const TemperatureGraph: FC<Props> = ({ temperatures }) => {
         <AreaChart
           width={500}
           height={400}
-          data={temperatures}
+          data={value}
           margin={{
             top: 10,
             right: 30,
