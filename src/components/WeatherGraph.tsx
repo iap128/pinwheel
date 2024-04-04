@@ -8,7 +8,7 @@ interface Props {
   title: string;
 }
 
-const TemperatureGraph: FC<Props> = ({ value, title }) => {
+const WeatherGraph: FC<Props> = ({ value, title }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -37,4 +37,4 @@ const TemperatureGraph: FC<Props> = ({ value, title }) => {
   );
 };
 
-export default TemperatureGraph;
+export default WeatherGraph;

@@ -11,7 +11,8 @@ import { FC, useContext } from 'react';
 import { StationContext } from '../StationContext';
 import ResponsiveRow from '../components/ResponsiveRow';
 import { DailySummary } from '../api/getWeekHistory';
-import TemperatureGraph from '../components/TemperatureGraph';
+import WeatherGraph from '../components/WeatherGraph';
+import { timestampToDate } from '../api/helpers';
 
 interface Props {
   recentHistory: DailySummary[];
@@ -20,9 +21,12 @@ interface Props {
 const Current: FC<Props> = ({ recentHistory }) => {
   const { currentConditions } = useContext(StationContext);
 
-  const temperatureTrend = recentHistory?.map(item => ({time: item.obsTimeLocal, value: item?.imperial?.tempAvg}));
-  const rainTrend = recentHistory?.map(item => ({time: item.obsTimeLocal, value: item?.imperial?.precipTotal}));
-  const humidityTrend = recentHistory?.map(item => ({time: item.obsTimeLocal, value: item?.humidityAvg}));
+  //take every 10th item from recentHistory so the graph isn't so big
+  const shortenedHistory = recentHistory?.filter((item, index) => index % 10 === 0);
+
+  const temperatureTrend = shortenedHistory?.map(item => ({time: timestampToDate(item.obsTimeLocal), value: item?.imperial?.tempAvg}));
+  const rainTrend = shortenedHistory?.map(item => ({time: timestampToDate(item.obsTimeLocal), value: item?.imperial?.precipTotal}));
+  const humidityTrend = shortenedHistory?.map(item => ({time: timestampToDate(item.obsTimeLocal), value: item?.humidityAvg}));
 
   return (
     <div>
@@ -34,7 +38,7 @@ const Current: FC<Props> = ({ recentHistory }) => {
             suffix: 'f',
             icon: faTemperatureThreeQuarters,
             tooltip: 'Feels like ' + currentConditions?.imperial.windChill + ' f',
-            extras: <TemperatureGraph value={temperatureTrend} title='Temperature Trend' />,
+            extras: <WeatherGraph value={temperatureTrend} title='Temperature Trend' />,
           },
           {
             title: 'Wind Speed',
@@ -60,7 +64,7 @@ const Current: FC<Props> = ({ recentHistory }) => {
             suffix: "in",
             icon: faDroplet,
             tooltip: 'Falling at a rate of ' + currentConditions?.imperial.precipRate + ' in/hr',
-            extras: <TemperatureGraph value={rainTrend} title='Rainfall Trend' />,
+            extras: <WeatherGraph value={rainTrend} title='Rainfall Trend' />,
           },
           {
             title: "Pressure",
@@ -74,7 +78,7 @@ const Current: FC<Props> = ({ recentHistory }) => {
             suffix: "%",
             icon: faPercent,
             tooltip: 'Dew point: ' + currentConditions?.imperial.dewpt + ' f',
-            extras: <TemperatureGraph value={humidityTrend} title='Humidity Trend' />,
+            extras: <WeatherGraph value={humidityTrend} title='Humidity Trend' />,
           },
           {
             title: "Solar Radiation",
