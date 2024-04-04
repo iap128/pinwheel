@@ -5,15 +5,16 @@ import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts'
 
 interface Props {
   value: {time: string, value: number}[];
+  title: string;
 }
 
-const TemperatureGraph: FC<Props> = ({ value }) => {
+const TemperatureGraph: FC<Props> = ({ value, title }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <div>
       <Button shape="circle" size="small" onClick={() => setOpen(true)} icon={<DownOutlined />} />
-      <Modal title="Temperature Trend" open={open} onCancel={() => setOpen(false)} footer={[]}>
+      <Modal title={title} open={open} onCancel={() => setOpen(false)} footer={[]}>
         <AreaChart
           width={500}
           height={400}

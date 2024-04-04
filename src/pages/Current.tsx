@@ -34,7 +34,7 @@ const Current: FC<Props> = ({ recentHistory }) => {
             suffix: 'f',
             icon: faTemperatureThreeQuarters,
             tooltip: 'Feels like ' + currentConditions?.imperial.windChill + ' f',
-            extras: <TemperatureGraph value={temperatureTrend} />,
+            extras: <TemperatureGraph value={temperatureTrend} title='Temperature Trend' />,
           },
           {
             title: 'Wind Speed',
@@ -60,7 +60,7 @@ const Current: FC<Props> = ({ recentHistory }) => {
             suffix: "in",
             icon: faDroplet,
             tooltip: 'Falling at a rate of ' + currentConditions?.imperial.precipRate + ' in/hr',
-            extras: <TemperatureGraph value={rainTrend} />,
+            extras: <TemperatureGraph value={rainTrend} title='Rainfall Trend' />,
           },
           {
             title: "Pressure",
@@ -74,7 +74,7 @@ const Current: FC<Props> = ({ recentHistory }) => {
             suffix: "%",
             icon: faPercent,
             tooltip: 'Dew point: ' + currentConditions?.imperial.dewpt + ' f',
-            extras: <TemperatureGraph value={humidityTrend} />,
+            extras: <TemperatureGraph value={humidityTrend} title='Humidity Trend' />,
           },
           {
             title: "Solar Radiation",
