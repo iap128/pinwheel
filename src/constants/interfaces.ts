@@ -6,7 +6,7 @@ export interface CardProps {
   suffix: string;
   icon: IconDefinition;
   tooltip?: string;
-  hasExtras?: ExtrasProps[];
+  extras?: JSX.Element;
 }
 
 export interface ExtrasProps {

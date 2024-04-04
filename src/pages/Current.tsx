@@ -11,6 +11,7 @@ import { FC, useContext } from 'react';
 import { StationContext } from '../StationContext';
 import ResponsiveRow from '../components/ResponsiveRow';
 import { DailySummary } from '../api/getWeekHistory';
+import TemperatureGraph from '../components/TemperatureGraph';
 
 interface Props {
   recentHistory: DailySummary[];
@@ -19,7 +20,7 @@ interface Props {
 const Current: FC<Props> = ({ recentHistory }) => {
   const { currentConditions } = useContext(StationContext);
 
-  const temperatureTrend = recentHistory?.map(item => ({time: item.obsTimeLocal, temp: item?.imperial?.tempAvg}));
+  const temperatureTrend = recentHistory?.map(item => ({time: item.obsTimeLocal, value: item?.imperial?.tempAvg}));
 
   return (
     <div>
@@ -31,6 +32,7 @@ const Current: FC<Props> = ({ recentHistory }) => {
             suffix: 'f',
             icon: faTemperatureThreeQuarters,
             tooltip: 'Feels like ' + currentConditions?.imperial.windChill + ' f',
+            extras: <TemperatureGraph temperatures={temperatureTrend} />,
           },
           {
             title: 'Wind Speed',
