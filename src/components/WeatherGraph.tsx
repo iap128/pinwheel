@@ -29,7 +29,7 @@ const WeatherGraph: FC<Props> = ({ data, title }) => {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis />
-          <Tooltip />
+          <Tooltip labelStyle={{ color: 'black' }}/>
           <Area type="monotone" dataKey="value" stroke="#000" fill="#499ff5" />
         </AreaChart>
       </Modal>
