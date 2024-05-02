@@ -18,7 +18,7 @@ const ResponsiveRow: FC<Props> = ({columnItems}) => {
                         suffix={item.suffix}
                         icon={item.icon}
                         tooltip={item.tooltip}
-                        hasExtras={item.hasExtras}
+                        extras={item.extras}
                     />
                 </Col>
             ))}

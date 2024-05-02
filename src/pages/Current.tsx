@@ -7,12 +7,26 @@ import {
   faTemperatureThreeQuarters,
   faWind,
 } from '@fortawesome/free-solid-svg-icons';
-import { useContext } from 'react';
+import { FC, useContext } from 'react';
 import { StationContext } from '../StationContext';
 import ResponsiveRow from '../components/ResponsiveRow';
+import { DailySummary } from '../api/getWeekHistory';
+import WeatherGraph from '../components/WeatherGraph';
+import { timestampToDate } from '../api/helpers';
 
-const Current = () => {
+interface Props {
+  recentHistory: DailySummary[];
+}
+
+const Current: FC<Props> = ({ recentHistory }) => {
   const { currentConditions } = useContext(StationContext);
+
+  //take every 10th item from recentHistory so the graph isn't so big
+  const shortenedHistory = recentHistory?.filter((item, index) => index % 10 === 0);
+
+  const temperatureTrend = shortenedHistory?.map(item => ({name: timestampToDate(item.obsTimeLocal), value: item?.imperial?.tempAvg}));
+  const rainTrend = shortenedHistory?.map(item => ({name: timestampToDate(item.obsTimeLocal), value: item?.imperial?.precipTotal}));
+  const humidityTrend = shortenedHistory?.map(item => ({name: timestampToDate(item.obsTimeLocal), value: item?.humidityAvg}));
 
   return (
     <div>
@@ -24,6 +38,7 @@ const Current = () => {
             suffix: 'f',
             icon: faTemperatureThreeQuarters,
             tooltip: 'Feels like ' + currentConditions?.imperial.windChill + ' f',
+            extras: <WeatherGraph data={temperatureTrend} title='Temperature Trend' />,
           },
           {
             title: 'Wind Speed',
@@ -49,6 +64,7 @@ const Current = () => {
             suffix: "in",
             icon: faDroplet,
             tooltip: 'Falling at a rate of ' + currentConditions?.imperial.precipRate + ' in/hr',
+            extras: <WeatherGraph data={rainTrend} title='Rainfall Trend' />,
           },
           {
             title: "Pressure",
@@ -62,6 +78,7 @@ const Current = () => {
             suffix: "%",
             icon: faPercent,
             tooltip: 'Dew point: ' + currentConditions?.imperial.dewpt + ' f',
+            extras: <WeatherGraph data={humidityTrend} title='Humidity Trend' />,
           },
           {
             title: "Solar Radiation",

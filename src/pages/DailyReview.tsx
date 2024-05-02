@@ -12,6 +12,7 @@ import {
 import { DailySummary } from '../api/getWeekHistory';
 import { FC } from 'react';
 import ResponsiveRow from '../components/ResponsiveRow';
+import CardExtras from '../components/CardExtras';
 
 interface Props {
   summaryObject: DailySummary;
@@ -27,54 +28,69 @@ const DailyReview: FC<Props> = ({ summaryObject }) => {
             value: summaryObject?.imperial.tempAvg,
             suffix: 'f',
             icon: faTemperatureThreeQuarters,
-            hasExtras: [
-              {
-                label: 'Max Temperature',
-                value: summaryObject?.imperial.tempHigh,
-                icon: faUpLong,
-              },
-              {
-                label: 'Min Temperature',
-                value: summaryObject?.imperial.tempLow,
-                icon: faDownLong,
-              },
-            ],
+            extras: (
+              <CardExtras
+                extras={[
+                  {
+                    label: 'Max Temperature',
+                    value: summaryObject?.imperial.tempHigh,
+                    icon: faUpLong,
+                  },
+                  {
+                    label: 'Min Temperature',
+                    value: summaryObject?.imperial.tempLow,
+                    icon: faDownLong,
+                  },
+                ]}
+                suffix="f"
+              />
+            ),
           },
           {
             title: 'Avg Wind Speed',
             value: summaryObject?.imperial.windspeedAvg,
             suffix: 'mph',
             icon: faWind,
-            hasExtras: [
-              {
-                label: 'Max Wind Speed',
-                value: summaryObject?.imperial.windspeedHigh,
-                icon: faUpLong,
-              },
-              {
-                label: 'Min Wind Speed',
-                value: summaryObject?.imperial.windspeedLow,
-                icon: faDownLong,
-              },
-            ],
+            extras: (
+              <CardExtras
+                extras={[
+                  {
+                    label: 'Max Wind Speed',
+                    value: summaryObject?.imperial.windspeedHigh,
+                    icon: faUpLong,
+                  },
+                  {
+                    label: 'Min Wind Speed',
+                    value: summaryObject?.imperial.windspeedLow,
+                    icon: faDownLong,
+                  },
+                ]}
+                suffix="mph"
+              />
+            ),
           },
           {
             title: 'Avg Gust Speed',
             value: summaryObject?.imperial.windgustAvg,
             suffix: 'mph',
             icon: faWind,
-            hasExtras: [
-              {
-                label: 'Max Gust Speed',
-                value: summaryObject?.imperial.windgustHigh,
-                icon: faUpLong,
-              },
-              {
-                label: 'Min Gust Speed',
-                value: summaryObject?.imperial.windgustLow,
-                icon: faDownLong,
-              },
-            ],
+            extras: (
+              <CardExtras
+                extras={[
+                  {
+                    label: 'Max Gust Speed',
+                    value: summaryObject?.imperial.windgustHigh,
+                    icon: faUpLong,
+                  },
+                  {
+                    label: 'Min Gust Speed',
+                    value: summaryObject?.imperial.windgustLow,
+                    icon: faDownLong,
+                  },
+                ]}
+                suffix="mph"
+              />
+            ),
           },
           {
             title: 'Avg Wind Direction',

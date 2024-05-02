@@ -4,15 +4,14 @@ import { Button, Card, Statistic, Tooltip } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { ClipLoader } from 'react-spinners';
-import CardExtras from './CardExtras';
 
-const WeatherCard: FC<CardProps> = ({ title, value, suffix, icon, tooltip, hasExtras }) => {
+const WeatherCard: FC<CardProps> = ({ title, value, suffix, icon, tooltip, extras }) => {
   return (
     <Card
       actions={
-        hasExtras
+        extras
           ? [
-              <CardExtras extras={hasExtras} suffix={suffix} />,
+              extras
             ]
           : undefined
       }
