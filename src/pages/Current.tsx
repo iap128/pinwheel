@@ -24,9 +24,9 @@ const Current: FC<Props> = ({ recentHistory }) => {
   //take every 10th item from recentHistory so the graph isn't so big
   const shortenedHistory = recentHistory?.filter((item, index) => index % 10 === 0);
 
-  const temperatureTrend = shortenedHistory?.map(item => ({time: timestampToDate(item.obsTimeLocal), value: item?.imperial?.tempAvg}));
-  const rainTrend = shortenedHistory?.map(item => ({time: timestampToDate(item.obsTimeLocal), value: item?.imperial?.precipTotal}));
-  const humidityTrend = shortenedHistory?.map(item => ({time: timestampToDate(item.obsTimeLocal), value: item?.humidityAvg}));
+  const temperatureTrend = shortenedHistory?.map(item => ({name: timestampToDate(item.obsTimeLocal), value: item?.imperial?.tempAvg}));
+  const rainTrend = shortenedHistory?.map(item => ({name: timestampToDate(item.obsTimeLocal), value: item?.imperial?.precipTotal}));
+  const humidityTrend = shortenedHistory?.map(item => ({name: timestampToDate(item.obsTimeLocal), value: item?.humidityAvg}));
 
   return (
     <div>
@@ -38,7 +38,7 @@ const Current: FC<Props> = ({ recentHistory }) => {
             suffix: 'f',
             icon: faTemperatureThreeQuarters,
             tooltip: 'Feels like ' + currentConditions?.imperial.windChill + ' f',
-            extras: <WeatherGraph value={temperatureTrend} title='Temperature Trend' />,
+            extras: <WeatherGraph data={temperatureTrend} title='Temperature Trend' />,
           },
           {
             title: 'Wind Speed',
@@ -64,7 +64,7 @@ const Current: FC<Props> = ({ recentHistory }) => {
             suffix: "in",
             icon: faDroplet,
             tooltip: 'Falling at a rate of ' + currentConditions?.imperial.precipRate + ' in/hr',
-            extras: <WeatherGraph value={rainTrend} title='Rainfall Trend' />,
+            extras: <WeatherGraph data={rainTrend} title='Rainfall Trend' />,
           },
           {
             title: "Pressure",
@@ -78,7 +78,7 @@ const Current: FC<Props> = ({ recentHistory }) => {
             suffix: "%",
             icon: faPercent,
             tooltip: 'Dew point: ' + currentConditions?.imperial.dewpt + ' f',
-            extras: <WeatherGraph value={humidityTrend} title='Humidity Trend' />,
+            extras: <WeatherGraph data={humidityTrend} title='Humidity Trend' />,
           },
           {
             title: "Solar Radiation",

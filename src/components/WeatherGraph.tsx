@@ -4,11 +4,11 @@ import { FC, useState } from 'react';
 import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
 
 interface Props {
-  value: {time: string, value: number}[];
+  data: {name: string, value: number}[];
   title: string;
 }
 
-const WeatherGraph: FC<Props> = ({ value, title }) => {
+const WeatherGraph: FC<Props> = ({ data, title }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -18,7 +18,7 @@ const WeatherGraph: FC<Props> = ({ value, title }) => {
         <AreaChart
           width={500}
           height={400}
-          data={value}
+          data={data}
           margin={{
             top: 10,
             right: 30,
@@ -27,10 +27,10 @@ const WeatherGraph: FC<Props> = ({ value, title }) => {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="time" />
-          <YAxis dataKey="value" />
+          <XAxis dataKey="name" />
+          <YAxis />
           <Tooltip />
-          <Area type="monotone" dataKey="value" stroke="#8884d8" fill="#8884d8" />
+          <Area type="monotone" dataKey="value" stroke="#000" fill="#499ff5" />
         </AreaChart>
       </Modal>
     </div>
