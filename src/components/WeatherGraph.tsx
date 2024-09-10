@@ -15,6 +15,7 @@ const WeatherGraph: FC<Props> = ({ data, title }) => {
     <div>
       <Button shape="circle" size="small" onClick={() => setOpen(true)} icon={<DownOutlined />} />
       <Modal title={title} open={open} onCancel={() => setOpen(false)} footer={[]}>
+        <div style={{ overflow: 'scroll' }}>
         <AreaChart
           width={500}
           height={400}
@@ -32,6 +33,7 @@ const WeatherGraph: FC<Props> = ({ data, title }) => {
           <Tooltip labelStyle={{ color: 'black' }}/>
           <Area type="monotone" dataKey="value" stroke="#000" fill="#499ff5" />
         </AreaChart>
+        </div>
       </Modal>
     </div>
   );
