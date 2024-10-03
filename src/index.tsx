@@ -6,28 +6,38 @@ import reportWebVitals from './reportWebVitals';
 import StationProvider from './StationContext';
 import { ConfigProvider, theme } from 'antd';
 import '@fontsource-variable/roboto-mono';
+import { createTheme, ThemeProvider } from '@mui/material';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
+const muiTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
 root.render(
   <React.StrictMode>
     <StationProvider>
-      <ConfigProvider theme={{
-        algorithm: theme.darkAlgorithm,
-        token: {
-          fontFamily: 'Roboto Mono Variable, sans-serif',
-        },
-        components: {
-          Layout: {
-            headerBg: '#28282A',
-          }
-        }
-      }}>
-        <App />
+      <ConfigProvider
+        theme={{
+          algorithm: theme.darkAlgorithm,
+          token: {
+            fontFamily: 'Roboto Mono Variable, sans-serif',
+          },
+          components: {
+            Layout: {
+              headerBg: '#28282A',
+            },
+          },
+        }}
+      >
+        <ThemeProvider theme={muiTheme}>
+          <App />
+        </ThemeProvider>
       </ConfigProvider>
     </StationProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function
