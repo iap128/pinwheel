@@ -16,10 +16,15 @@ const WeatherGraph: FC<Props> = ({ data, title }) => {
       <Button shape='circle' size='small' onClick={() => setOpen(true)} icon={<DownOutlined />} />
       <Modal title={title} open={open} onCancel={() => setOpen(false)} footer={[]}>
         <LineChart
-        colors={['orange']}
+          colors={['orange']}
           xAxis={[{ scaleType: 'point', data: data.map(item => item.name) }]}
           series={[{ data: data.map(item => item.value), area: true, showMark: false }]}
           height={400}
+          slotProps={{
+            popper: {
+              placement: 'top',
+            }
+          }}
         />
       </Modal>
     </div>
