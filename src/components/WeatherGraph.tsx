@@ -22,8 +22,8 @@ const WeatherGraph: FC<Props> = ({ data, title }) => {
           height={400}
           slotProps={{
             popper: {
-              placement: 'top',
-            }
+              placement: 'top-start',
+            },
           }}
         />
       </Modal>
